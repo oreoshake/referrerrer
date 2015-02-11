@@ -18,3 +18,7 @@ DIRECTIVE_VALUES.each do |content|
 HTML
   end
 end
+
+get '/' do
+  redirect to("/no-referrer-when-downgrade")
+end
