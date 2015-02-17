@@ -21,7 +21,12 @@ end
 
 get '/csp-with-path' do
   headers['Content-Security-Policy'] = "default-src 'none'; img-src https://avatars2.githubusercontent.com/u; style-src 'unsafe-inline';"
-  "<img src=\"https://avatars2.githubusercontent.com/u/2623954?v=3&s=60\"><img src=\"https://avatars2.githubusercontent.com/b/2623954?v=3&s=60\">"
+  <<-HTML
+  <p>If CSP with paths is working, you should see one image and one CSP violation in the console.</p>
+  <p>If it's not working, you'll get an empty page.</p>
+  <img src=\"https://avatars2.githubusercontent.com/u/2623954?v=3&amp;s=60\">
+  <img src=\"https://avatars2.githubusercontent.com/b/2623954?v=3&amp;s=60\">"
+HTML
 end
 
 get '/' do
