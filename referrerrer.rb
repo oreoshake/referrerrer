@@ -2,6 +2,10 @@ require 'sinatra'
 
 DIRECTIVE_VALUES = %w{none never no-referrer origin origin-when-crossorigin no-referrer-when-downgrade unsafe-url}
 
+before do
+  headers['strict-transport-security'] = "max-age 1234567890123456; includeSubdomains"
+end
+
 DIRECTIVE_VALUES.each do |content|
   get "/#{content}" do
     <<-HTML
