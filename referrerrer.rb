@@ -20,7 +20,7 @@ HTML
 end
 
 get '/csp-with-path' do
-  headers['Content-Security-Policy'] = "default-src 'none'; img-src https://avatars2.githubusercontent.com/u"
+  headers['Content-Security-Policy'] = "default-src 'none'; img-src https://avatars2.githubusercontent.com/u; style-src 'unsafe-inline';"
   "<img src=\"https://avatars2.githubusercontent.com/u/2623954?v=3&s=60\"><img src=\"https://avatars2.githubusercontent.com/b/2623954?v=3&s=60\">"
 end
 
