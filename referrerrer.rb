@@ -37,6 +37,13 @@ get '/' do
   redirect to("/no-referrer-when-downgrade")
 end
 
+get '/mixed-content' do
+<<-HTML
+If mixed content is blocked, the image won't load:
+<img src="http://www.marioverehrer.com/images/cover/nyan-cat.jpg">
+HTML
+end
+
 get '/never-no-referrer' do
 <<-HTML
 <html>
