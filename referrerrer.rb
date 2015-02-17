@@ -1,6 +1,6 @@
 require 'sinatra'
 
-DIRECTIVE_VALUES = %w{no-referrer origin origin-when-crossorigin no-referrer-when-downgrade unsafe-url}
+DIRECTIVE_VALUES = %w{never no-referrer origin origin-when-crossorigin no-referrer-when-downgrade unsafe-url}
 
 DIRECTIVE_VALUES.each do |content|
   get "/#{content}" do
