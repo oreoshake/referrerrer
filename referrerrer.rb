@@ -40,11 +40,11 @@ end
 get '/mixed-content' do
 <<-HTML
 If mixed content is blocked, the image won't load:
-<img src="http://www.marioverehrer.com/images/cover/nyan-cat.jpg">
-<script src="http://www.marioverehrer.com/images/cover/nyan-cat.jpg"></script>
-<link rel="stylesheet" type="text/css" href="http://www.marioverehrer.com/images/cover/nyan-cat.jpg">
-<video src="http://www.marioverehrer.com/images/cover/nyan-cat.jpg"></video>
-<audio src="http://www.marioverehrer.com/images/cover/nyan-cat.jpg"></audio>
+<img src="http://www.marioverehrer.com/images/cover/nyan-cat.jpg?img">
+<script src="http://www.marioverehrer.com/images/cover/nyan-cat.jpg?script"></script>
+<link rel="stylesheet" type="text/css" href="http://www.marioverehrer.com/images/cover/nyan-cat.jpg?stylesheet">
+<video src="http://www.marioverehrer.com/images/cover/nyan-cat.jpg?video"></video>
+<audio src="http://www.marioverehrer.com/images/cover/nyan-cat.jpg?audio"></audio>
 HTML
 end
 
