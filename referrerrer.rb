@@ -41,6 +41,8 @@ get '/mixed-content' do
 <<-HTML
 If mixed content is blocked, the image won't load:
 <img src="http://www.marioverehrer.com/images/cover/nyan-cat.jpg">
+<script src="http://www.marioverehrer.com/images/cover/nyan-cat.jpg"></script>
+<link rel="stylesheet" type="text/css" href="http://www.marioverehrer.com/images/cover/nyan-cat.jpg">
 HTML
 end
 
