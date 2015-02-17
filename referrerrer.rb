@@ -32,7 +32,7 @@ get '/never-no-referrer' do
     <meta name="referrer" content="none" />
   </head>
   <body>
-    <p><a href="/self">self</a></p>
+    <p><a href="/never-no-referrer">self</a></p>
     <p>Referrer: <data>#{request.referrer}</data></p>
   </body>
 HTML
