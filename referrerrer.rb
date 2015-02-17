@@ -1,6 +1,6 @@
 require 'sinatra'
 
-DIRECTIVE_VALUES = %w{never no-referrer origin origin-when-crossorigin no-referrer-when-downgrade unsafe-url}
+DIRECTIVE_VALUES = %w{none never no-referrer origin origin-when-crossorigin no-referrer-when-downgrade unsafe-url}
 
 DIRECTIVE_VALUES.each do |content|
   get "/#{content}" do
@@ -21,4 +21,18 @@ end
 
 get '/' do
   redirect to("/no-referrer-when-downgrade")
+end
+
+get '/never-no-referrer' do
+<<-HTML
+<html>
+  <head>
+    <meta name="referrer" content="never" />
+    <meta name="referrer" content="no-referrer" />
+    <meta name="referrer" content="none" />
+  </head>
+  <body>
+    <p><a href="/self">self</a></p>
+  </body>
+HTML
 end
