@@ -19,6 +19,11 @@ HTML
   end
 end
 
+get '/csp-with-path' do
+  headers['Content-Security-Policy'] = "default-src 'none'; img-src https://avatars2.githubusercontent.com/u"
+  "<img src=\"https://avatars2.githubusercontent.com/u/2623954?v=3&s=60\"><img src=\"https://avatars2.githubusercontent.com/b/2623954?v=3&s=60\">"
+end
+
 get '/' do
   redirect to("/no-referrer-when-downgrade")
 end
