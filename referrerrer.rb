@@ -45,6 +45,7 @@ If mixed content is blocked, the image won't load:
 <link rel="stylesheet" type="text/css" href="http://www.marioverehrer.com/images/cover/nyan-cat.jpg?stylesheet">
 <video src="http://www.marioverehrer.com/images/cover/nyan-cat.jpg?video"></video>
 <audio src="http://www.marioverehrer.com/images/cover/nyan-cat.jpg?audio"></audio>
+<embed src="http://www.marioverehrer.com/images/cover/nyan-cat.jpg?swf" quality="high">
 HTML
 end
 
