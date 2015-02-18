@@ -33,6 +33,10 @@ get '/csp-with-path' do
 HTML
 end
 
+get '/fuck-safari' do
+  cookies.inspect
+end
+
 get '/' do
   redirect to("/no-referrer-when-downgrade")
 end
