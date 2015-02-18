@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'sinatra/cookies'
 
 DIRECTIVE_VALUES = %w{none never no-referrer origin origin-when-crossorigin no-referrer-when-downgrade unsafe-url}
 
