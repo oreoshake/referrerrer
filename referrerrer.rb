@@ -38,6 +38,10 @@ get '/fuck-safari' do
   cookies.inspect
 end
 
+get '/oh-safari' do
+  cookies.inspect
+end
+
 get '/' do
   redirect to("/no-referrer-when-downgrade")
 end
