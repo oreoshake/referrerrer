@@ -19,6 +19,7 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
+    redcarpet (3.2.2)
     rubyzip (1.1.7)
     selenium-webdriver (2.44.0)
       childprocess (~> 0.5)
@@ -46,6 +47,7 @@ PLATFORMS
 DEPENDENCIES
   pry
   puma
+  redcarpet
   selenium-webdriver
   sinatra
   sinatra-contrib
