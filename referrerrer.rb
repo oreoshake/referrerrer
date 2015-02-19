@@ -34,12 +34,9 @@ get '/csp-with-path' do
 HTML
 end
 
-get '/fuck-safari' do
-  cookies.inspect
-end
-
-get '/oh-safari' do
-  cookies.inspect
+get '/form-action' do
+  headers['Content-Security-Policy'] = "default-src 'none'; form-action https:; report-uri /nowhere"
+  "<form action=\"http://google.com\"><input type=text><input type=submit></form>"
 end
 
 get '/' do
