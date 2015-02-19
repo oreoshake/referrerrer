@@ -78,20 +78,19 @@ end
 
 get '/nonce' do
   nonce = SecureRandom.hex
-  headers['Content-Security-Policy'] = "default-src 'none'; script-src 'nonce-#{nonce}'; report-uri /nowhere"
+  headers['Content-Security-Policy'] = "default-src 'none'; script-src 'unsafe-inline' 'nonce-#{nonce}'; report-uri /nowhere"
 <<-HTML
   <script nonce="#{nonce}">console.log("this is expected, move along.")</script>
-  <script>alert("if you are seeing this, the browser not support csp nonce")</script>
+  <script>alert("if you are seeing this, the browser not support csp nonce sources")</script>
   If you get an alert box, fail. Otherwise, yay. You can check the console to check for a friendly message to show whitelisted scripts ran.
 HTML
 end
 
 get '/hash' do
-  nonce = SecureRandom.hex
-  headers['Content-Security-Policy'] = "default-src 'none'; script-src 'nonce-#{nonce}'; report-uri /nowhere"
+  headers['Content-Security-Policy'] = "default-src 'none'; script-src 'unsafe-inline' 'sha256-/5HM72XjTKVYv9UTgvVDdAY1yVNIE5yJkts47LQpWDY='; report-uri /nowhere"
 <<-HTML
-  <script nonce="#{nonce}">console.log("this is expected, move along.")</script>
-  <script>alert("if you are seeing this, the browser not support csp nonce")</script>
+  <script>console.log("this is expected, move along.")</script>
+  <script>alert("if you are seeing this, the browser not support csp hash sources")</script>
   If you get an alert box, fail. Otherwise, yay. You can check the console to check for a friendly message to show whitelisted scripts ran.
 HTML
 end
