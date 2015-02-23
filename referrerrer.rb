@@ -39,7 +39,6 @@ get '/google-analytics' do
     }
   });
 </script>
-
 Hi.
 <p>Header is:</p>
 <pre>#{headers['content-security-policy']}</pre>
