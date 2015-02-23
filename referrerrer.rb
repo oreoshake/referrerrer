@@ -41,7 +41,8 @@ get '/google-analytics' do
 </script>
 
 Hi.
-<p>Header is: #{headers['content-security-policy']}</p>
+<p>Header is:</p>
+<pre>#{headers['content-security-policy']}</pre>
 <p>GA Code:</p>
 <pre>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
