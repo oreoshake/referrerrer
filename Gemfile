@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.1.4'
 
+gem 'rack'
 gem 'rerun'
 gem 'sinatra'
 gem 'sinatra-contrib'

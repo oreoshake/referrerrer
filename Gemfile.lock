@@ -58,6 +58,7 @@ PLATFORMS
 DEPENDENCIES
   pry
   puma
+  rack
   redcarpet
   rerun
   selenium-webdriver
