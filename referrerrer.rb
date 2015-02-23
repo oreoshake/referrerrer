@@ -18,9 +18,9 @@ get '/google-analytics' do
   headers['content-security-policy'] = "default-src 'none'; img-src https://www.google-analytics.com; script-src https://www.google-analytics.com https://ssl.google-analytics.com/ga.js 'self' 'unsafe-inline' 'sha256-8lbEMYMJ3VJbtw9Vj7LRxW8djnQJ3eTp3AzEvsyMgBE=' 'sha256-rD8GJ6T/4tWnL1d2MkCyzv4RctCfHBah9bmNqAxvGW0='"
 
 <<-HTML
-<script src="cryptojs/rollups/sha256.js"></script>
-<script src="cryptojs/components/enc-base64-min.js"></script>
-<script src="jquery.min.js"></script>
+<script src="js/cryptojs/rollups/sha256.js"></script>
+<script src="js/cryptojs/components/enc-base64-min.js"></script>
+<script src="js/jquery.min.js"></script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
