@@ -52,6 +52,8 @@ Hi.
   ga('create', 'UA-xxxxxx-3', 'auto');
   ga('send', 'pageview');
 </pre>
+<p>See https://blog.matatall.com/2014/08/this-blog-uses-csp-level-2-script-hash-support/ for more info on generating the hash values.</p>
+<p>You could also just externalize the GA inline code and include it. That's certainly preferrable as it removes the need for 'unsafe-inline', but don't worry, it's backwards compatible: browsers that understand the hash will ignore the 'unsafe-inline' and browsers that don't understand the hash will fall back to 'unsafe-inline' behavoir.</p>
 HTML
 end
 
