@@ -14,6 +14,11 @@ before do
   headers['strict-transport-security'] = "max-age 1234567890123456; includeSubdomains"
 end
 
+get '/fuck-safari' do
+  cookies.inspect
+end
+
+
 get '/google-analytics' do
   headers['content-security-policy'] = "default-src 'none'; img-src https://www.google-analytics.com; script-src https://www.google-analytics.com https://ssl.google-analytics.com/ga.js 'self' 'unsafe-inline' 'sha256-8lbEMYMJ3VJbtw9Vj7LRxW8djnQJ3eTp3AzEvsyMgBE=' 'sha256-rD8GJ6T/4tWnL1d2MkCyzv4RctCfHBah9bmNqAxvGW0='"
 
