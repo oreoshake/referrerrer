@@ -8,7 +8,7 @@ get '/' do
   Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(escape_html: true, safe_links_only: true), auto_link: true).render(file)
 end
 
-DIRECTIVE_VALUES = %w{none never no-referrer origin origin-when-crossorigin no-referrer-when-downgrade unsafe-url}
+DIRECTIVE_VALUES = %w{none never no-referrer origin origin-when-crossorigin origin-when-cross-origin no-referrer-when-downgrade unsafe-url}
 
 before do
   headers['strict-transport-security'] = "max-age 1234567890123456; includeSubdomains"
