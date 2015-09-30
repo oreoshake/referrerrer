@@ -2,8 +2,23 @@ require 'sinatra'
 require 'sinatra/cookies'
 require 'securerandom'
 require 'redcarpet'
+require 'pry-nav'
+
+require 'secure_headers'
+
+::SecureHeaders::Configuration.configure do |config|
+  config.hsts             = {:max_age => 631138519, :include_subdomains => false, :preload => true}
+  config.x_frame_options  = {:value => 'SAMEORIGIN'}
+  config.x_xss_protection = {:value => 1, :mode => 'block'}  # set the :mode option to false to use "warning only" mode
+  config.x_content_type_options = {:value => 'nosniff'}
+  config.x_download_options = {:value => 'noopen'}
+  config.x_permitted_cross_domain_policies = {:value => 'none'}
+end
+
+include SecureHeaders
 
 get '/' do
+  set_security_headers
   file = File.read('README.md')
   Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(escape_html: true, safe_links_only: true), auto_link: true).render(file)
 end
@@ -64,6 +79,8 @@ end
 
 DIRECTIVE_VALUES.each do |content|
   get "/#{content}" do
+    binding.pry
+    set_security_headers
     <<-HTML
 <html>
   <head>
@@ -74,6 +91,9 @@ DIRECTIVE_VALUES.each do |content|
     <p>The default value for browser behavior is "<a href="https://w3c.github.io/webappsec/specs/referrer-policy/#referrer-policy-state-no-referrer-when-downgrade">no-referrer-when-downgrade</a>".</p>
     <p>Referrer: <data>#{request.referrer}</data></p>
     #{DIRECTIVE_VALUES.map {|value| "<a href=\"#{value}\">#{value}</a>"}.join(" | ")}
+    <img src="https://google.com">
+    <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
+    <script src="https://google.com"></script>
   </body>
 HTML
   end
@@ -103,6 +123,28 @@ get '/nonce' do
   If you get an alert box, fail. Otherwise, yay. You can check the console to check for a friendly message to show whitelisted scripts ran.
 HTML
 end
+
+get '/fuckga' do
+<<-HTML
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PZPGD5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PZPGD5');</script>
+<!-- End Google Tag Manager -->
+HTML
+end
+
+get '/mix' do
+  headers['Content-Security-Policy'] = "default-src *; img-src https: block-all-mixed-content; report-uri /nowhere"
+<<-HTML
+  <img src="http://i.ytimg.com/vi/MTA_xIgcpKE/hqdefault.jpg">
+HTML
+end
+
 
 get '/hash' do
   headers['Content-Security-Policy'] = "default-src 'none'; script-src 'unsafe-inline' 'sha256-/5HM72XjTKVYv9UTgvVDdAY1yVNIE5yJkts47LQpWDY='; report-uri /nowhere"

@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+#/ Usage: render_ipython < notbook.ipynb > result.html
+#/ Converts an ipython notebook to HTML over an STDIO pipe
+#/ Should function near-identically to `ipython nbconvert ..`
+#/
+set -e
+echo "the fuck"
+ROOT=$(cd $(dirname $0)/../.. && pwd)
+ACTIVATE="/Users/neil/github/render/vendor/ipython/bin/activate"
+
+# Bring up the python environment
+[ -e $ACTIVATE ]
+. $ACTIVATE
+echo "the fuck"
+# Perform the conversion over STDIN inline, without writing
+# *.pyc files from imports, since we're probably in an overlay
+# filesystem, making sure to use UTF-8 encoding on the IO streams
+export PYTHONIOENCODING='utf-8'
+
+cat | python -B -c '
+import sys
+sys.stdout.write("here")
+from IPython.nbconvert.exporters import HTMLExporter
+from IPython.config import Config
+
+config = Config({
+    "HTMLExporter": {
+        "template_file": "basic",
+    },
+    "NbConvertBase": {
+        "display_data_priority": [
+            "text/html",
+            "text/markdown",
+            "application/pdf",
+            "image/svg+xml",
+            "text/latex",
+            "image/png",
+            "image/jpeg",
+            "text/plain",
+        ],
+    }
+})
+
+ex = HTMLExporter(config=config)
+
+html, extra = ex.from_file(sys.stdin)
+sys.stdout.write("here")
+sys.stdout.write(html)
+'
