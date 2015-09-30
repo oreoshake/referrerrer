@@ -8,9 +8,9 @@ gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'redcarpet'
 gem 'puma'
-gem 'secure_headers'
+
 
 group :development do
-  gem 'pry-nav'
+  gem 'pry'
   gem 'selenium-webdriver'
 end
