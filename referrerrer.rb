@@ -80,7 +80,7 @@ HTML
 end
 
 get '/csp-with-path' do
-  headers['Content-Security-Policy'] = "default-src 'none'; img-src https://avatars2.githubusercontent.com/u; style-src 'unsafe-inline'; report-uri https://donkey.com"
+  headers['Content-Security-Policy'] = "default-src 'none'; img-src https://avatars2.githubusercontent.com/u/; style-src 'unsafe-inline'; report-uri https://donkey.com"
   <<-HTML
   <p>If CSP with paths is working, you should see one image and one CSP violation in the console.</p>
   <p>If it's not working, you'll get an empty page.</p>
